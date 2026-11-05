@@ -7,9 +7,9 @@ pipeline {
         stage('Increment version') {
             steps {
                 script {
-                    dir('app') {
-                        echo 'incrementing app version...'
-                        sh 'npm version minor --no-git-tag-version'
+                    dir("app") {
+                        echo "incrementing app version..."
+                        sh "npm version minor —no-git-tag-version"
                         def version = sh(
                             script: 'node -p "require(\'./app/package.json\').version"',
                             returnStdout: true
@@ -23,10 +23,10 @@ pipeline {
         stage('Run tests') {
             steps {
                 script {
-                    dir('app') {
-                        echo 'Running tests...'
-                        sh 'npm install'
-                        sh 'npm run test'
+                    dir("app") {
+                        echo "Running tests..."
+                        sh "npm install"
+                        sh "npm run test"
                     }
                 }
             }
