@@ -9,7 +9,7 @@ pipeline {
                 script {
                     dir("app") {
                         echo "incrementing app version..."
-                        sh "npm version minor —no-git-tag-version"
+                        sh "npm version minor --no-git-tag-version"
                         def version = sh(
                             script: 'node -p "require(\'./app/package.json\').version"',
                             returnStdout: true
