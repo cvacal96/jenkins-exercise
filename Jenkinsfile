@@ -10,11 +10,13 @@ pipeline {
                     dir("app") {
                         echo "incrementing app version..."
                         sh "npm version minor --no-git-tag-version"
-                        def version = sh(
-                            script: 'node -p "require(\'./app/package.json\').version"',
-                            returnStdout: true
-                        ).trim()
-                        env.IMAGE_NAME = "${version}-${env.BUILD_NUMBER}"
+                        
+                        # read the updated version from the package.json file
+                        def packageJson = readJSON file: 'package.json'
+                        def version = packageJson.version
+
+                        # set the new version as part of IMAGE_NAME
+                        env.IMAGE_NAME = "$version-$BUILD_NUMBER"
                     }
                 }
             }
