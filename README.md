@@ -15,3 +15,7 @@ Make sure to download jest library before running test, otherwise jest command d
     npm install
 
 In order to see failing test, remove index.html or rename it and run tests.
+
+##### Jenkins versioning
+
+For builds not triggered by a `ci: version bump` commit, the Jenkins pipeline increments the patch version in `app/package.json` and sets `IMAGE_NAME` to `<version>-<build number>`. It commits the version update on non-PR branches; the resulting commit is skipped by the pipeline to prevent a build loop.
