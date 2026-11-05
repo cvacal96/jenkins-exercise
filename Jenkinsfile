@@ -57,7 +57,7 @@ pipeline {
                 steps {
                     script {
                         withCredentials([usernamePassword(credentialsId: 'gitlab-credentials', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
-                            # git config here for the first time run
+                            
                             sh 'git config --global user.email "jenkins@example.com"'
                             sh 'git config --global user.name "jenkins"'
                             sh 'git remote set-url origin https://$USER:$PASS@gitlab.com/twn-devops-bootcamp/latest/08-jenkins/jenkins-exercises.git'
