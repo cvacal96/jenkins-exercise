@@ -1,14 +1,10 @@
 FROM node:24-alpine
 
-RUN mkdir -p /home/app
+RUN mkdir -p /usr/app
+COPY app/ /usr/app/
 
-COPY ./app/package.json ./app/package-lock.json /home/app/
-
-RUN npm install
-
-COPY ./app /home/app
-
-WORKDIR /home/app
+WORKDIR /usr/app
 EXPOSE 3000
 
-CMD ["node", "index.js"]
+RUN npm install
+CMD ["node", "server.js"]
