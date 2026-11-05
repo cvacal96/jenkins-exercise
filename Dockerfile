@@ -2,7 +2,7 @@ FROM node:24-alpine
 
 RUN mkdir -p /home/app
 
-COPY package.json package-lock.json /home/app/
+COPY ./app/package.json ./app/package-lock.json /home/app/
 
 RUN npm install
 
